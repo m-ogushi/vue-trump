@@ -111,7 +111,7 @@ var app = new Vue({
             });
         },
         startGame: function () {
-            this.playerPlaySevenStatus();
+            this.ckeckPlayerPutSevenStatus();
         },
         selectCard : function( index ) {
             if( ! this.ifTheCardPlayerHave( index ) ) {
@@ -127,34 +127,26 @@ var app = new Vue({
             } else if ( this.progression_stage == 1 ) {
                 if ( this.card_list[index].can_play == true ) {
                     this.putCard( index );
-
-                    if ( this.turn_player_id == 1 ) {
-                        this.turn_player_id = 2;
-                    } else if ( this.turn_player_id == 2 ) {
-                        this.turn_player_id = 1;
-                    }
-                    this.progression_message = "プレイヤー" + this.turn_player_id + "さんの番です";
-
+                    this.checkNextPlayerPutStage();
                 }
                 this.checkIfGameEnd();
             }
         },
         ifTheCardPlayerHave : function( index ) {
-            player_id = this.turn_player_id;
-            return ( this.card_list[index].status == player_id );
+            return ( this.card_list[index].status == this.turn_player_id );
         },
         ifTheCardSeven : function( index ) {
             return ( this.card_list[index].number == 7 );
         },
         putSeven : function(index ) {
             this.putCard( index );
-            this.playerPlaySevenStatus();
+            this.ckeckPlayerPutSevenStatus();
         },
-        playerPlaySevenStatus : function () {
+        ckeckPlayerPutSevenStatus : function () {
             if ( this.checkIfThePlayerHaveSeven( 1 ) ) {
-                this.firstParations( 1 );
+                this.checkPlayerPutSevenStage( 1 );
             } else if ( this.checkIfThePlayerHaveSeven( 2 ) ) {
-                this.firstParations( 2 );
+                this.checkPlayerPutSevenStage( 2 );
             } else {
                 this.finishPlaySevenStage();
             }
@@ -166,7 +158,7 @@ var app = new Vue({
                 }
             ).length > 0 )
         },
-        firstParations: function( player_id ) {
+        checkPlayerPutSevenStage: function(player_id ) {
             this.turn_player_id = player_id;
             this.progression_message = "プレイヤー" + player_id + "さん、7を並べて下さい";
         },
@@ -175,6 +167,13 @@ var app = new Vue({
             this.turn_player_id = 1;
             this.enable_pass = 1;
 
+            this.progression_message = "プレイヤー" + this.turn_player_id + "さんの番です";
+        },
+        checkNextPlayerPutStage : function() {
+            this.turn_player_id++;
+            if ( this.turn_player_id > this.player_amount ) {
+                this.turn_player_id = 1;
+            }
             this.progression_message = "プレイヤー" + this.turn_player_id + "さんの番です";
         },
         putCard : function( index ) {
@@ -192,12 +191,7 @@ var app = new Vue({
         },
         pass : function() {
             this.pass_count[this.turn_player_id-1]++;
-            if ( this.turn_player_id == 1 ) {
-                this.turn_player_id = 2;
-            } else if ( this.turn_player_id == 2 ) {
-                this.turn_player_id = 1;
-            }
-            this.progression_message = "プレイヤー" + this.turn_player_id + "さんの番です";
+            this.checkNextPlayerPutStage();
         },
         checkIfGameEnd : function() {
             status = this.turn_player_id;
