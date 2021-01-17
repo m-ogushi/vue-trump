@@ -8,26 +8,30 @@
 <body>
 <div id="app">
     <p>{{ message }}</p>
-    <p>{{ progression_message }}</p>
+    <p>{{ progressionMessageText }}</p>
     <br>
-    <img v-for="( item, index ) in card_list" v-if="item.status==2"
-         v-bind:key="item.id" :src="item.imageSrc" v-on:click="selectCard( index )" width="136" height="200">
+    <div id="player2_card_field">
+        <transition-group name="player2_card_field">
+            <img v-for="( item, index ) in card_list" v-if="item.status==2"
+                 v-bind:key="item.id" :src="item.imageSrc" v-on:click="selectCard( index )" width="136" height="200">
+        </transition-group>
+    </div>
     <p><a class="turn_mark" v-if="this.turn_player_id==2">〇</a>プレイヤー2</p>
     <p>パス: {{ pass_count[1] }}回</p>
     <button v-if="this.turn_player_id==2 && this.enable_pass==1" v-on:click="pass()">パスする</button>
 
     <table id="playground">
         <tr>
-            <td v-for="card_info of heartCard" is="shinomiya" :card_info="card_info">
+            <td v-for="card_info of heartCard" is="field-card" :card_info="card_info">
         </tr>
         <tr>
-            <td v-for="card_info of clubCard" is="shinomiya" :card_info="card_info">
+            <td v-for="card_info of clubCard" is="field-card" :card_info="card_info">
         </tr>
         <tr>
-            <td v-for="card_info of diaCard" is="shinomiya" :card_info="card_info">
+            <td v-for="card_info of diaCard" is="field-card" :card_info="card_info">
         </tr>
         <tr>
-            <td v-for="card_info of spadeCard" is="shinomiya" :card_info="card_info">
+            <td v-for="card_info of spadeCard" is="field-card" :card_info="card_info">
         </tr>
     </table>
     <br>
@@ -36,8 +40,12 @@
     <button v-if="this.turn_player_id==1 && this.enable_pass==1"
             v-on:click="pass()">パスする</button>
     <br>
-    <img v-for="( item, index ) in card_list" v-if="item.status==1"
-    v-bind:key="item.id" :src="item.imageSrc" v-on:click="selectCard( index )" width="136" height="200">
+    <div id="player1_card_field">
+        <transition-group name="player1_card_field">
+            <img v-for="( item, index ) in card_list" v-if="item.status==1"
+            v-bind:key="item.id" :src="item.imageSrc" v-on:click="selectCard( index )" width="136" height="200">
+        </transition-group>
+    </div>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.5/lodash.min.js"></script>

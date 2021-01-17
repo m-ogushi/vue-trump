@@ -1,16 +1,26 @@
 var myComponent = {
-    template: '<td> <div class="can_put_card" v-if="card_info.can_play"></div> <img v-if="card_info.status==3":src="card_info.imageSrc" width="57" height="80"></td>',
-    props: [ 'card_info']
+    template: '<td> <div class="can_put_card" v-if="card_info.can_play"></div> <img :key="card_info.id" v-if="card_info.status==3":src="card_info.imageSrc" width="57" height="80"></td>',
+   // props: [ 'card_info']
+    props: {
+        card_info: {
+            can_play: {
+                type: Function,
+                required: true,
+            },
+            type: Object,
+            required: true,
+        },
+    },
 }
 
 var app = new Vue({
     el: '#app',
     components: {
-        'shinomiya': myComponent,
+        'field-card': myComponent,
     },
     data: {
         message: 'なかあかの7ならべ',
-        progression_message: '',
+        progression_stage_text: '',
         progression_stage: 0,
         card_list: [
             {id: 1, number: 1, status: 0, can_play: false, imageSrc: 'images/heart/card_heart_01.png'},
@@ -73,7 +83,7 @@ var app = new Vue({
         pass_count : [0,0],
         enable_pass : 0,
         player_amount : 2,
-        turn_player_id: 1
+        turn_player_id: 1,
     },
     computed: {
         heartCard() {
@@ -87,6 +97,9 @@ var app = new Vue({
         },
         spadeCard() {
             return this.card_list.slice(39,52);
+        },
+        progressionMessageText() {
+            return "プレイヤー" + this.turn_player_id + "さん" + this.progression_stage_text;
         }
     },
     created: function () {
@@ -111,6 +124,7 @@ var app = new Vue({
             });
         },
         startGame: function () {
+            this.progression_stage_text = "7を並べてください";
             this.ckeckPlayerPutSevenStatus();
         },
         selectCard : function( index ) {
@@ -160,21 +174,19 @@ var app = new Vue({
         },
         checkPlayerPutSevenStage: function(player_id ) {
             this.turn_player_id = player_id;
-            this.progression_message = "プレイヤー" + player_id + "さん、7を並べて下さい";
         },
         finishPlaySevenStage: function() {
             this.progression_stage = 1;
             this.turn_player_id = 1;
             this.enable_pass = 1;
 
-            this.progression_message = "プレイヤー" + this.turn_player_id + "さんの番です";
+            this.progression_stage_text = "の番です";
         },
         checkNextPlayerPutStage : function() {
             this.turn_player_id++;
             if ( this.turn_player_id > this.player_amount ) {
                 this.turn_player_id = 1;
             }
-            this.progression_message = "プレイヤー" + this.turn_player_id + "さんの番です";
         },
         putCard : function( index ) {
             this.card_list[index].status = 3;
@@ -201,7 +213,7 @@ var app = new Vue({
                 }
             ).length == 0 ) {
                 this.progression_stage == 2;
-                this.progression_message = "プレイヤー" + this.turn_player_id + "さんの勝ちです!!";
+                this.progression_stage_text = "の勝ちです!!";
             }
         },
     }

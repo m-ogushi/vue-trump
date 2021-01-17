@@ -24,3 +24,42 @@ td .can_put_card
 {
     color: #ff0000;
 }
+
+.player1_card_field-move {
+     transition: transform 0.5s;
+ }
+
+.player1_card_field-leave-active{
+    position: absolute;
+    transition: opacity 0.5s, transform 0.5s;
+}
+
+.player1_card_field-leave-to {
+     opacity: 0;
+     transform: translate3d(0, -30px, 0);
+ }
+
+.player2_card_field-move {
+    transition: transform 0.5s;
+}
+
+.player2_card_field-leave-active{
+    position: absolute;
+    transition: opacity 0.5s, transform 0.5s;
+}
+
+.player2_card_field-leave-to {
+    opacity: 0;
+    transform: translate3d(0, 30px, 0);
+}
+
+/*
+.put_card_field-enter-active{
+    position: absolute;
+    transition: opacity 3s, transform 0.5s;
+}
+
+.put_card_field-enter{
+    opacity: 0;
+    transform: translate3d(0, 30px, 0);
+}*/
