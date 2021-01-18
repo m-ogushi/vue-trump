@@ -1,5 +1,8 @@
-#playground{
-
+#playground tr td img{
+    width:57px;
+    height:80px;
+    text-align: center;
+    position: relative;
 }
 
 td {
@@ -25,6 +28,10 @@ td .can_put_card
     color: #ff0000;
 }
 
+.card_field img {
+    width: 136px;
+    height: 200px;
+}
 .player1_card_field-move {
      transition: transform 0.5s;
  }
@@ -53,6 +60,23 @@ td .can_put_card
     transform: translate3d(0, 30px, 0);
 }
 
+.show_can_play-enter-active{
+    position: absolute;
+    transition: opacity 1s;
+}
+
+.show_can_play-enter{
+    opacity: 0;
+}
+
+.field_card-enter-active{
+    position: absolute;
+    transition: opacity 0.5s;
+}
+
+.field_card-enter{
+    opacity: 0;
+}
 /*
 .put_card_field-enter-active{
     position: absolute;
