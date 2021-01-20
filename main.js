@@ -21,6 +21,27 @@ var fieldCard = {
     },
 }
 
+var modalWindow = {
+    template: '<transition name="modal">'+'' +
+        '            <div class="modal-mask">' +
+        '                <div class="modal-wrapper">' +
+        '                    <div class="modal-container">' +
+        '                        <div class="modal-header">' +
+        '                            <slot name="header">' +
+        '                                default header' +
+        '                            </slot>' +
+        '                        </div>' +
+        '                        <div class="modal-body">' +
+        '                            <slot name="body">' +
+        '                                default body' +
+        '                            </slot>' +
+        '                        </div>' +
+        '                    </div>' +
+        '                </div>' +
+        '            </div>' +
+        '        </transition>'
+}
+
 const progressionStage = {
     putSeven:0,
     putCard:1,
@@ -28,14 +49,18 @@ const progressionStage = {
 }
 
 const progressionStageText = ["7を並べてください。","の番です。","の勝ちです!!"];
+const modalMessageText = [ ['カードを配りました','7を並べてください'],
+                           ['ゲームスタート','カードを並べてください']];
 
 var app = new Vue({
     el: '#app',
     components: {
         'field-card': fieldCard,
+        'modal': modalWindow
     },
     data: {
         message: 'なかあかの7ならべ',
+        showModal: false,
         progression_stage: progressionStage.putSeven,
         card_list: [
             {id: 1, number: 1, status: 0, can_play: false, imageSrc: 'images/heart/card_heart_01.png'},
@@ -111,6 +136,9 @@ var app = new Vue({
         },
         progressionMessageText() {
             return "プレイヤー" + this.turn_player_id + "さん" + progressionStageText[this.progression_stage];
+        },
+        modalMessageText() {
+            return modalMessageText[this.progression_stage];
         }
     },
     created: function () {
@@ -135,6 +163,13 @@ var app = new Vue({
         },
         startGame: function () {
             this.ckeckPlayerPutSevenStatus();
+            this.showTemporarilyModal();
+        },
+        showTemporarilyModal() {
+            this.showModal = true;
+            setTimeout(() => {
+                this.showModal = false;
+            }, 2000);
         },
         selectCard : function( index ) {
             if( ! this.ifTheCardPlayerHave( index ) ) {
@@ -188,6 +223,7 @@ var app = new Vue({
             this.progression_stage = progressionStage.putCard;
             this.turn_player_id = 1;
             this.enable_pass = true;
+            this.showTemporarilyModal();
         },
         checkNextPlayerPutStage : function() {
             this.turn_player_id++;

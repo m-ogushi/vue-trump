@@ -6,7 +6,12 @@
     <link href="main.css" rel="stylesheet">
 </head>
 <body>
-<div id="app">
+<div v-cloak id="app">
+    <modal v-if="showModal" @close="showModal = false">
+        <h3 slot="header">{{ modalMessageText[0] }}</h3>
+        <a slot="body">{{ modalMessageText[1] }}</a>
+    </modal>
+
     <p>{{ message }}</p>
     <p>{{ progressionMessageText }}</p>
     <br>
