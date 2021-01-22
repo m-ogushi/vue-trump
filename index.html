@@ -8,8 +8,8 @@
 <body>
 <div v-cloak id="app">
     <modal v-if="showModal" @close="showModal = false">
-        <h3 slot="header">{{ modalMessageText[0] }}</h3>
-        <a slot="body">{{ modalMessageText[1] }}</a>
+        <h3 slot="header">{{ showModalMessage[0] }}</h3>
+        <a slot="body">{{ showModalMessage[1] }}</a>
     </modal>
 
     <p>{{ message }}</p>
@@ -48,7 +48,7 @@
     <div id="player1_card_field" class="card_field">
         <transition-group name="player1_card_field">
             <img v-for="( item, index ) in card_list" v-if="item.status==1"
-            v-bind:key="item.id" :src="item.imageSrc" v-on:click="selectCard( index )">
+                 v-bind:key="item.id" :src="item.imageSrc" v-on:click="selectCard( index )">
         </transition-group>
     </div>
 </div>

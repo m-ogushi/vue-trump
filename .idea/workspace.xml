@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="8a94aa5e-188e-4147-8aa1-aec5139818b5" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/main.js" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ComposerSettings">
+    <execution />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="CSS File" />
+        <option value="HTML File" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="master" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="1mNEpO8N9EZ2zWRSAsCSseY5vO0" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+    <option name="showMembers" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="list.type.of.created.stylesheet" value="CSS" />
+    <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
+    <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="settings.editor.selected.configurable" value="reference.settings.deploy.options" />
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="SvnConfiguration">
+    <configuration>C:\Users\mitsukazu.ogushi\AppData\Roaming\Subversion</configuration>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="8a94aa5e-188e-4147-8aa1-aec5139818b5" name="Default Changelist" comment="" />
+      <created>1609325830608</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1609325830608</updated>
+      <workItem from="1609325832079" duration="10174000" />
+      <workItem from="1609392411599" duration="15085000" />
+      <workItem from="1609739142442" duration="32077000" />
+      <workItem from="1610071073185" duration="1533000" />
+      <workItem from="1610417621472" duration="1341000" />
+      <workItem from="1610512404868" duration="4324000" />
+      <workItem from="1610584616588" duration="3472000" />
+      <workItem from="1610598902424" duration="3651000" />
+      <workItem from="1610670315320" duration="4343000" />
+      <workItem from="1610686056553" duration="3219000" />
+      <workItem from="1610795300715" duration="3103000" />
+      <workItem from="1610862670063" duration="8038000" />
+      <workItem from="1610929804746" duration="5951000" />
+      <workItem from="1611021745411" duration="4289000" />
+      <workItem from="1611101847716" duration="5957000" />
+      <workItem from="1611186823550" duration="5044000" />
+      <workItem from="1611273204292" duration="5290000" />
+    </task>
+    <task id="LOCAL-00001" summary="一通りの動作を確認">
+      <created>1610599337096</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1610599337096</updated>
+    </task>
+    <task id="LOCAL-00002" summary="まとめられる関数の記載を一つにする">
+      <created>1610671752419</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1610671752419</updated>
+    </task>
+    <task id="LOCAL-00003" summary="カードの遷移にアニメーションを付ける、命名の修正">
+      <created>1610866801569</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1610866801570</updated>
+    </task>
+    <task id="LOCAL-00004" summary="propsの型指定と、アニメーションを追加">
+      <created>1610931449338</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1610931449338</updated>
+    </task>
+    <task id="LOCAL-00005" summary="モーダルウィンドウの追加">
+      <created>1611116779116</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1611116779117</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="一通りの動作を確認" />
+    <MESSAGE value="まとめられる関数の記載を一つにする" />
+    <MESSAGE value="カードの遷移にアニメーションを付ける、命名の修正" />
+    <MESSAGE value="propsの型指定と、アニメーションを追加" />
+    <MESSAGE value="モーダルウィンドウの追加" />
+    <option name="LAST_COMMIT_MESSAGE" value="モーダルウィンドウの追加" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="970" y="-832" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1609840813892">
+      <screen x="3" y="-1080" width="1920" height="1040" />
+    </state>
+    <state x="970" y="-832" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1366.728/3.-1080.1920.1040@3.-1080.1920.1040" timestamp="1609840813892" />
+    <state x="672" y="-1063" width="773" height="815" key="CommitChangelistDialog2" timestamp="1611116777234">
+      <screen x="3" y="-1080" width="1920" height="1040" />
+    </state>
+    <state x="672" y="-1063" width="773" height="815" key="CommitChangelistDialog2/0.0.1366.728/3.-1080.1920.1040@3.-1080.1920.1040" timestamp="1611116777234" />
+    <state x="281" y="-946" width="1574" height="708" key="DiffContextDialog" timestamp="1611036959659">
+      <screen x="82" y="-1080" width="1858" height="1080" />
+    </state>
+    <state x="209" y="-951" width="1626" height="681" key="DiffContextDialog/0.0.1366.728/3.-1080.1920.1040@3.-1080.1920.1040" timestamp="1610945905473" />
+    <state x="281" y="-946" width="1574" height="708" key="DiffContextDialog/0.0.1366.728/82.-1080.1858.1080/-1838.-1086.1920.1040@82.-1080.1858.1080" timestamp="1611036959659" />
+    <state x="1046" y="-883" width="546" height="490" key="FileChooserDialogImpl" timestamp="1610965653324">
+      <screen x="3" y="-1080" width="1920" height="1040" />
+    </state>
+    <state x="636" y="138" width="546" height="490" key="FileChooserDialogImpl/0.0.1366.728/3.-1080.1920.1040@0.0.1366.728" timestamp="1609925863326" />
+    <state x="1046" y="-883" key="FileChooserDialogImpl/0.0.1366.728/3.-1080.1920.1040@3.-1080.1920.1040" timestamp="1610965653324" />
+    <state x="968" y="-937" key="RollbackChangesDialog" timestamp="1610945799616">
+      <screen x="3" y="-1080" width="1920" height="1040" />
+    </state>
+    <state x="968" y="-937" key="RollbackChangesDialog/0.0.1366.728/3.-1080.1920.1040@3.-1080.1920.1040" timestamp="1610945799616" />
+    <state x="648" y="-935" key="Vcs.Push.Dialog.v2" timestamp="1611116785152">
+      <screen x="3" y="-1080" width="1920" height="1040" />
+    </state>
+    <state x="648" y="-935" key="Vcs.Push.Dialog.v2/0.0.1366.728/3.-1080.1920.1040@3.-1080.1920.1040" timestamp="1611116785152" />
+    <state x="789" y="198" width="577" height="530" key="find.popup" timestamp="1609929950874">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="789" y="198" width="577" height="530" key="find.popup/0.0.1366.728/3.-1080.1920.1040@0.0.1366.728" timestamp="1609929950874" />
+  </component>
+</project>

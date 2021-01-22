@@ -49,8 +49,6 @@ const progressionStage = {
 }
 
 const progressionStageText = ["7を並べてください。","の番です。","の勝ちです!!"];
-const modalMessageText = [ ['カードを配りました','7を並べてください'],
-                           ['ゲームスタート','カードを並べてください']];
 
 var app = new Vue({
     el: '#app',
@@ -120,6 +118,7 @@ var app = new Vue({
         enable_pass : false,
         player_amount : 2,
         turn_player_id: 1,
+        amount_of_put_seven: [0,0]
     },
     computed: {
         heartCard() {
@@ -137,8 +136,13 @@ var app = new Vue({
         progressionMessageText() {
             return "プレイヤー" + this.turn_player_id + "さん" + progressionStageText[this.progression_stage];
         },
-        modalMessageText() {
-            return modalMessageText[this.progression_stage];
+        showModalMessage() {
+            $modal_message_text = [
+                ['カードを配りました','7を並べてください'],
+                ['ゲームスタート','カードを並べてください'],
+                ['ゲーム終了!', this.progressionMessageText ]
+            ];
+            return $modal_message_text[this.progression_stage];
         }
     },
     created: function () {
@@ -185,9 +189,10 @@ var app = new Vue({
             } else if ( this.progression_stage == progressionStage.putCard ) {
                 if ( this.card_list[index].can_play == true ) {
                     this.putCard( index );
-                    this.checkNextPlayerPutStage();
+                    if ( ! this.checkIfGameEnd() ) {
+                        this.checkNextPlayerPutStage();
+                    }
                 }
-                this.checkIfGameEnd();
             }
         },
         ifTheCardPlayerHave : function( index ) {
@@ -198,6 +203,7 @@ var app = new Vue({
         },
         putSeven : function(index ) {
             this.putCard( index );
+            this.amount_of_put_seven[this.turn_player_id-1]++;
             this.ckeckPlayerPutSevenStatus();
         },
         ckeckPlayerPutSevenStatus : function () {
@@ -206,7 +212,7 @@ var app = new Vue({
             } else if ( this.checkIfThePlayerHaveSeven( 2 ) ) {
                 this.checkPlayerPutSevenStage( 2 );
             } else {
-                this.finishPlaySevenStage();
+                this.finishPutSevenStage();
             }
         },
         checkIfThePlayerHaveSeven : function( player_id ) {
@@ -219,11 +225,23 @@ var app = new Vue({
         checkPlayerPutSevenStage: function( player_id ) {
             this.turn_player_id = player_id;
         },
-        finishPlaySevenStage: function() {
+        finishPutSevenStage: function() {
             this.progression_stage = progressionStage.putCard;
-            this.turn_player_id = 1;
+
+            this.turn_player_id = this.checkPutFirstPlayerAfterFinishPutSeven();
             this.enable_pass = true;
             this.showTemporarilyModal();
+        },
+        checkPutFirstPlayerAfterFinishPutSeven: function() {
+            index = 0;
+            value = 0;
+            for (let i = 0, l = this.amount_of_put_seven.length; i < l; i++) {
+                if (value < this.amount_of_put_seven[i]) {
+                    value = this.amount_of_put_seven[i];
+                    index = i
+                }
+            }
+            return index + 1;
         },
         checkNextPlayerPutStage : function() {
             this.turn_player_id++;
@@ -255,7 +273,9 @@ var app = new Vue({
                     return ( value.status == status )
                 }
             ).length == 0 ) {
-                this.progression_stage == progressionStage.gameEnd;
+                this.progression_stage = progressionStage.gameEnd;
+                this.showTemporarilyModal();
+                return true;
             }
         },
     }

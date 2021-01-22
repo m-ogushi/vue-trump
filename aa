@@ -1,0 +1,4 @@
+<!--
+            <td is="shinomiya" v-bind:map_status="this.map_status[6]" v-bind:card_status="this.card_list[6].status" v-bind:card_image_src="this.card_list[6].imageSrc"></td>
+            -->
+
