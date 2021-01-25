@@ -221,7 +221,9 @@ var app = new Vue({
             return ( this.card_list[index].number == 7 );
         },
         putSeven : function(index ) {
-            this.putCard( index );
+            this.card_list[index].status = 3;
+            this.card_list[index].can_play = false;
+
             this.amount_of_put_seven[this.turn_player_id-1]++;
             this.ckeckPlayerPutSevenStatus();
         },
@@ -252,6 +254,11 @@ var app = new Vue({
             this.turn_player_id = player_id;
         },
         finishPutSevenStage: function() {
+            for (let i = 0, l = this.card_list.length; i < l; i++) {
+                if ( this.card_list[i].status == 3 ) {
+                    this.updateWhereCanPut( i );
+                }
+            }
             this.progression_stage = progressionStage.putCard;
 
             this.turn_player_id = this.checkPutFirstPlayerAfterFinishPutSeven();
