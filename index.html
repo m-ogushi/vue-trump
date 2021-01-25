@@ -17,8 +17,9 @@
     <br>
     <div id="player2_card_field" class="card_field">
         <transition-group name="player2_card_field">
-            <img v-for="( item, index ) in card_list" v-if="item.status==2"
-                 v-bind:key="item.id" :src="item.imageSrc" v-on:click="selectCard( index )" width="136" height="200">
+            <div class="player_card" v-for="( item, index ) in card_list" v-if="item.status==2" v-bind:key="item.id"  :style="{width: player2CardWidth}" v-on:click="selectCard( index )">
+                <img :src="item.imageSrc">
+            </div>
         </transition-group>
     </div>
     <p><a class="turn_mark" v-if="this.turn_player_id==2">〇</a>プレイヤー2</p>
@@ -47,8 +48,9 @@
     <br>
     <div id="player1_card_field" class="card_field">
         <transition-group name="player1_card_field">
-            <img v-for="( item, index ) in card_list" v-if="item.status==1"
-                 v-bind:key="item.id" :src="item.imageSrc" v-on:click="selectCard( index )">
+            <div class="player_card" v-for="( item, index ) in card_list" v-if="item.status==1" v-bind:key="item.id" :style="{width: player1CardWidth}" v-on:click="selectCard( index )">
+                <img :src="item.imageSrc">
+            </div>
         </transition-group>
     </div>
 </div>

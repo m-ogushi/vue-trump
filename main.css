@@ -9,8 +9,12 @@
     position: relative;
 }
 
-td {
+.player_card {
+    display: inline-block;
+    max-width: 136px;
+}
 
+td {
     border:1px solid #ccc;
     height: 100px;
     width: 70px;
@@ -61,7 +65,7 @@ td .can_put_card
 
 .player2_card_field-leave-to {
     opacity: 0;
-    transform: translate3d(0, 30px, 0);
+    transform: translateY( 30px );
 }
 
 .show_can_play-enter-active{
@@ -78,21 +82,9 @@ td .can_put_card
     transition: opacity 0.5s;
 }
 
-.field_card-enter{
+.field_card-enter {
     opacity: 0;
 }
-/*
-.put_card_field-enter-active{
-    position: absolute;
-    transition: opacity 3s, transform 0.5s;
-}
-
-.put_card_field-enter{
-    opacity: 0;
-    transform: translate3d(0, 30px, 0);
-}*/
-
-
 
 .modal-mask {
     position: fixed;

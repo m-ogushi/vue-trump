@@ -143,6 +143,24 @@ var app = new Vue({
                 ['ゲーム終了!', this.progressionMessageText ]
             ];
             return $modal_message_text[this.progression_stage];
+        },
+        player1CardWidth() {
+            $card_amount = this.card_list.filter
+            (
+                function (value) {
+                    return (value.status == 1 )
+                }
+            ).length;
+            return ( 1000 / $card_amount ) + 'px';
+        },
+        player2CardWidth() {
+            $card_amount = this.card_list.filter
+            (
+                function (value) {
+                    return (value.status == 2 )
+                }
+            ).length;
+            return ( 1000 / $card_amount ) + 'px';
         }
     },
     created: function () {

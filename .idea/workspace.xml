@@ -2,7 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8a94aa5e-188e-4147-8aa1-aec5139818b5" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/main.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/main.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -74,7 +76,8 @@
       <workItem from="1611021745411" duration="4289000" />
       <workItem from="1611101847716" duration="5957000" />
       <workItem from="1611186823550" duration="5044000" />
-      <workItem from="1611273204292" duration="5290000" />
+      <workItem from="1611273204292" duration="20558000" />
+      <workItem from="1611532629536" duration="994000" />
     </task>
     <task id="LOCAL-00001" summary="一通りの動作を確認">
       <created>1610599337096</created>
@@ -111,7 +114,14 @@
       <option name="project" value="LOCAL" />
       <updated>1611116779117</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="モーダルウィンドウの修正">
+      <created>1611289277022</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1611289277022</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -123,22 +133,25 @@
     <MESSAGE value="カードの遷移にアニメーションを付ける、命名の修正" />
     <MESSAGE value="propsの型指定と、アニメーションを追加" />
     <MESSAGE value="モーダルウィンドウの追加" />
-    <option name="LAST_COMMIT_MESSAGE" value="モーダルウィンドウの追加" />
+    <MESSAGE value="モーダルウィンドウの修正" />
+    <option name="LAST_COMMIT_MESSAGE" value="モーダルウィンドウの修正" />
   </component>
   <component name="WindowStateProjectService">
     <state x="970" y="-832" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1609840813892">
       <screen x="3" y="-1080" width="1920" height="1040" />
     </state>
     <state x="970" y="-832" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1366.728/3.-1080.1920.1040@3.-1080.1920.1040" timestamp="1609840813892" />
-    <state x="672" y="-1063" width="773" height="815" key="CommitChangelistDialog2" timestamp="1611116777234">
+    <state x="672" y="-1063" width="773" height="815" key="CommitChangelistDialog2" timestamp="1611289274229">
       <screen x="3" y="-1080" width="1920" height="1040" />
     </state>
-    <state x="672" y="-1063" width="773" height="815" key="CommitChangelistDialog2/0.0.1366.728/3.-1080.1920.1040@3.-1080.1920.1040" timestamp="1611116777234" />
-    <state x="281" y="-946" width="1574" height="708" key="DiffContextDialog" timestamp="1611036959659">
-      <screen x="82" y="-1080" width="1858" height="1080" />
+    <state x="672" y="-1063" width="773" height="815" key="CommitChangelistDialog2/0.0.1366.728/3.-1080.1920.1040@3.-1080.1920.1040" timestamp="1611289274229" />
+    <state x="176" y="-965" width="1626" height="681" key="DiffContextDialog" timestamp="1611533658375">
+      <screen x="3" y="-1080" width="1920" height="1040" />
     </state>
-    <state x="209" y="-951" width="1626" height="681" key="DiffContextDialog/0.0.1366.728/3.-1080.1920.1040@3.-1080.1920.1040" timestamp="1610945905473" />
+    <state x="148" y="90" width="1157" height="477" key="DiffContextDialog/0.0.1366.728/3.-1080.1920.1040@0.0.1366.728" timestamp="1611496590530" />
+    <state x="176" y="-965" width="1626" height="681" key="DiffContextDialog/0.0.1366.728/3.-1080.1920.1040@3.-1080.1920.1040" timestamp="1611533658375" />
     <state x="281" y="-946" width="1574" height="708" key="DiffContextDialog/0.0.1366.728/82.-1080.1858.1080/-1838.-1086.1920.1040@82.-1080.1858.1080" timestamp="1611036959659" />
+    <state x="147" y="90" width="1157" height="477" key="DiffContextDialog/0.0.1366.728@0.0.1366.728" timestamp="1611467350479" />
     <state x="1046" y="-883" width="546" height="490" key="FileChooserDialogImpl" timestamp="1610965653324">
       <screen x="3" y="-1080" width="1920" height="1040" />
     </state>
@@ -148,10 +161,10 @@
       <screen x="3" y="-1080" width="1920" height="1040" />
     </state>
     <state x="968" y="-937" key="RollbackChangesDialog/0.0.1366.728/3.-1080.1920.1040@3.-1080.1920.1040" timestamp="1610945799616" />
-    <state x="648" y="-935" key="Vcs.Push.Dialog.v2" timestamp="1611116785152">
+    <state x="648" y="-935" key="Vcs.Push.Dialog.v2" timestamp="1611289281789">
       <screen x="3" y="-1080" width="1920" height="1040" />
     </state>
-    <state x="648" y="-935" key="Vcs.Push.Dialog.v2/0.0.1366.728/3.-1080.1920.1040@3.-1080.1920.1040" timestamp="1611116785152" />
+    <state x="648" y="-935" key="Vcs.Push.Dialog.v2/0.0.1366.728/3.-1080.1920.1040@3.-1080.1920.1040" timestamp="1611289281789" />
     <state x="789" y="198" width="577" height="530" key="find.popup" timestamp="1609929950874">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
