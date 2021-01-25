@@ -18,7 +18,10 @@
     <div id="player2_card_field" class="card_field">
         <transition-group name="player2_card_field">
             <div class="player_card" v-for="( item, index ) in card_list" v-if="item.status==2" v-bind:key="item.id"  :style="{width: player2CardWidth}" v-on:click="selectCard( index )">
-                <img :src="item.imageSrc">
+                <transition name="can_select_card_list">
+                    <div class="can_select_card" v-if="item.can_play && turn_player_id == 2"></div>
+                </transition>
+                <img :src="item.imageSrc"><!--:class="{ canSelectCard }"--><!-- :class="{ can_select_card: item.can_play }" -->
             </div>
         </transition-group>
     </div>

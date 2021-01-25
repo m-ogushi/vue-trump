@@ -184,6 +184,7 @@ var app = new Vue({
             });
         },
         startGame: function () {
+            this.startPutSeven();
             this.ckeckPlayerPutSevenStatus();
             this.showTemporarilyModal();
         },
@@ -223,6 +224,13 @@ var app = new Vue({
             this.putCard( index );
             this.amount_of_put_seven[this.turn_player_id-1]++;
             this.ckeckPlayerPutSevenStatus();
+        },
+        startPutSeven : function () {
+            for (let i = 0, l = this.card_list.length; i < l; i++) {
+                if ( this.card_list[i].number == 7 ) {
+                    this.card_list[i].can_play = true;
+                }
+            }
         },
         ckeckPlayerPutSevenStatus : function () {
             if ( this.checkIfThePlayerHaveSeven( 1 ) ) {
@@ -271,7 +279,7 @@ var app = new Vue({
             this.card_list[index].status = 3;
             this.updateWhereCanPut( index );
         },
-        updateWhereCanPut : function(index ) {
+        updateWhereCanPut : function( index ) {
             this.card_list[index].can_play = false;
             if ( this.card_list[index].number > 1 && this.card_list[index - 1].status != 3 ) {
                 this.card_list[index - 1].can_play = true;
