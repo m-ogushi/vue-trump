@@ -3,6 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="8a94aa5e-188e-4147-8aa1-aec5139818b5" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/main.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/main.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -77,7 +79,10 @@
       <workItem from="1611273204292" duration="20558000" />
       <workItem from="1611532629536" duration="5522000" />
       <workItem from="1611548657614" duration="4521000" />
-      <workItem from="1611615904015" duration="1465000" />
+      <workItem from="1611615904015" duration="7489000" />
+      <workItem from="1611637873477" duration="4775000" />
+      <workItem from="1611645750973" duration="710000" />
+      <workItem from="1611705978732" duration="5929000" />
     </task>
     <task id="LOCAL-00001" summary="一通りの動作を確認">
       <created>1610599337096</created>
@@ -135,7 +140,14 @@
       <option name="project" value="LOCAL" />
       <updated>1611616130802</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="7を並べる段階では、他のカードを場におけないようにする">
+      <created>1611617480521</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1611617480521</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -150,22 +162,23 @@
     <MESSAGE value="モーダルウィンドウの修正" />
     <MESSAGE value="カードを一列に並べるようにする" />
     <MESSAGE value="プレイヤー2の、「出せるカード」の表示を追加" />
-    <option name="LAST_COMMIT_MESSAGE" value="プレイヤー2の、「出せるカード」の表示を追加" />
+    <MESSAGE value="7を並べる段階では、他のカードを場におけないようにする" />
+    <option name="LAST_COMMIT_MESSAGE" value="7を並べる段階では、他のカードを場におけないようにする" />
   </component>
   <component name="WindowStateProjectService">
     <state x="970" y="-832" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1609840813892">
       <screen x="3" y="-1080" width="1920" height="1040" />
     </state>
     <state x="970" y="-832" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1366.728/3.-1080.1920.1040@3.-1080.1920.1040" timestamp="1609840813892" />
-    <state x="-1169" y="-1069" width="773" height="815" key="CommitChangelistDialog2" timestamp="1611616128267">
+    <state x="-1169" y="-1069" width="773" height="815" key="CommitChangelistDialog2" timestamp="1611617478468">
       <screen x="-1838" y="-1086" width="1920" height="1040" />
     </state>
-    <state x="-1169" y="-1069" key="CommitChangelistDialog2/0.0.1366.728/-1838.-1086.1920.1040/82.-1080.1858.1080@-1838.-1086.1920.1040" timestamp="1611616128267" />
+    <state x="-1169" y="-1069" key="CommitChangelistDialog2/0.0.1366.728/-1838.-1086.1920.1040/82.-1080.1858.1080@-1838.-1086.1920.1040" timestamp="1611617478468" />
     <state x="672" y="-1063" width="773" height="815" key="CommitChangelistDialog2/0.0.1366.728/3.-1080.1920.1040@3.-1080.1920.1040" timestamp="1611533762379" />
-    <state x="-1665" y="-971" width="1626" height="681" key="DiffContextDialog" timestamp="1611616941161">
+    <state x="-1665" y="-971" width="1626" height="681" key="DiffContextDialog" timestamp="1611617884077">
       <screen x="-1838" y="-1086" width="1920" height="1040" />
     </state>
-    <state x="-1665" y="-971" width="1626" height="681" key="DiffContextDialog/0.0.1366.728/-1838.-1086.1920.1040/82.-1080.1858.1080@-1838.-1086.1920.1040" timestamp="1611616941161" />
+    <state x="-1665" y="-971" width="1626" height="681" key="DiffContextDialog/0.0.1366.728/-1838.-1086.1920.1040/82.-1080.1858.1080@-1838.-1086.1920.1040" timestamp="1611617884077" />
     <state x="148" y="90" width="1157" height="477" key="DiffContextDialog/0.0.1366.728/3.-1080.1920.1040@0.0.1366.728" timestamp="1611496590530" />
     <state x="176" y="-965" width="1626" height="681" key="DiffContextDialog/0.0.1366.728/3.-1080.1920.1040@3.-1080.1920.1040" timestamp="1611534318665" />
     <state x="281" y="-946" width="1574" height="708" key="DiffContextDialog/0.0.1366.728/82.-1080.1858.1080/-1838.-1086.1920.1040@82.-1080.1858.1080" timestamp="1611036959659" />
@@ -189,5 +202,13 @@
     </state>
     <state x="789" y="198" width="577" height="530" key="find.popup/0.0.1366.728/3.-1080.1920.1040@0.0.1366.728" timestamp="1609929950874" />
     <state x="1111" y="-798" width="812" height="758" key="find.popup/0.0.1366.728/3.-1080.1920.1040@3.-1080.1920.1040" timestamp="1611542479081" />
+    <state x="-1171" y="-303" key="run.anything.popup" timestamp="1611622400184">
+      <screen x="-1838" y="-1086" width="1920" height="1040" />
+    </state>
+    <state x="-1171" y="-303" key="run.anything.popup/0.0.1366.728/-1838.-1086.1920.1040/82.-1080.1858.1080@82.-1080.1858.1080" timestamp="1611622400184" />
+    <state x="387" y="251" key="save.project.as.template.dialog" timestamp="1611645639036">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="387" y="251" key="save.project.as.template.dialog/0.0.1366.728@0.0.1366.728" timestamp="1611645639036" />
   </component>
 </project>

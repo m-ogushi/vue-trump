@@ -1,6 +1,6 @@
 var fieldCard = {
     template: '<td><transition name="show_can_play"><div class="can_put_card" v-if="can_play"></div></transition>' +
-        '<transition name="field_card"><img :key="id" v-if="status==3" :src="imageSrc"></transition></td>',
+        '<transition name="field_card"><img :key="id" v-if="status==5" :src="imageSrc"></transition></td>', //statusはEnum化
     props: {
         id : {
             type: Number,
@@ -116,7 +116,7 @@ var app = new Vue({
         ],
         pass_count : [0,0],
         enable_pass : false,
-        player_amount : 2,
+        player_amount : 3,
         turn_player_id: 1,
         amount_of_put_seven: [0,0]
     },
@@ -133,6 +133,18 @@ var app = new Vue({
         spadeCard() {
             return this.card_list.slice(39,52);
         },
+        player1Card() {
+            return this.card_list.filter( function (value) { return (value.status == 1 ) } );
+        },
+        player2Card() {
+            return this.card_list.filter( function (value) { return (value.status == 2 ) } );
+        },
+        player3Card() {
+            return this.card_list.filter( function (value) { return (value.status == 3 ) } );
+        },
+        player4Card() {
+            return this.card_list.filter( function (value) { return (value.status == 4 ) } );
+        },
         progressionMessageText() {
             return "プレイヤー" + this.turn_player_id + "さん" + progressionStageText[this.progression_stage];
         },
@@ -145,13 +157,8 @@ var app = new Vue({
             return $modal_message_text[this.progression_stage];
         },
         player1CardWidth() {
-            $card_amount = this.card_list.filter
-            (
-                function (value) {
-                    return (value.status == 1 )
-                }
-            ).length;
-            return ( 1000 / $card_amount ) + 'px';
+            $card_amount = this.player1Card.length;
+            return ( 500 / $card_amount ) + 'px';
         },
         player2CardWidth() {
             $card_amount = this.card_list.filter
@@ -161,7 +168,26 @@ var app = new Vue({
                 }
             ).length;
             return ( 1000 / $card_amount ) + 'px';
-        }
+        },
+        player3CardWidth() {
+            $card_amount = this.card_list.filter
+            (
+                function (value) {
+                    return (value.status == 3 )
+                }
+            ).length;
+            //return ( 1000 / $card_amount ) + 'px';
+            return ( 500 / $card_amount ) + 'px';
+        },
+        player4CardWidth() {
+            $card_amount = this.card_list.filter
+            (
+                function (value) {
+                    return (value.status == 4 )
+                }
+            ).length;
+            return ( 1000 / $card_amount ) + 'px';
+        },
     },
     created: function () {
         this.preparationCard();
@@ -171,12 +197,14 @@ var app = new Vue({
         preparationCard: function() {
             this.card_list = _.shuffle(this.card_list);
 
-            half_card = this.card_list.length / 2;
-            for( let i = 0; i < half_card; i++ ) {
-                this.card_list[i].status = 1;
-            }
-            for( let i = half_card; i < this.card_list.length; i++ ) {
-                this.card_list[i].status = 2;
+            preparation_player_id = 1;
+            player_card_amount = this.card_list.length / this.player_amount;
+            for ( let i = 0; i < this.card_list.length; i++ ) {
+                this.card_list[i].status = preparation_player_id;
+                preparation_player_id++;
+                if ( preparation_player_id > this.player_amount ) {
+                    preparation_player_id = 1;
+                }
             }
 
             this.card_list.sort(function (a, b) {
@@ -194,7 +222,8 @@ var app = new Vue({
                 this.showModal = false;
             }, 2000);
         },
-        selectCard : function( index ) {
+        selectCard : function( id ) {
+            index = id -1;// 一旦、idをindexにする
             if( ! this.ifTheCardPlayerHave( index ) ) {
                 console.log( "自分のカードを選択してください" );
                 return;
@@ -221,7 +250,7 @@ var app = new Vue({
             return ( this.card_list[index].number == 7 );
         },
         putSeven : function(index ) {
-            this.card_list[index].status = 3;
+            this.card_list[index].status = 5;//Enum化
             this.card_list[index].can_play = false;
 
             this.amount_of_put_seven[this.turn_player_id-1]++;
@@ -235,13 +264,14 @@ var app = new Vue({
             }
         },
         ckeckPlayerPutSevenStatus : function () {
-            if ( this.checkIfThePlayerHaveSeven( 1 ) ) {
-                this.checkPlayerPutSevenStage( 1 );
-            } else if ( this.checkIfThePlayerHaveSeven( 2 ) ) {
-                this.checkPlayerPutSevenStage( 2 );
-            } else {
-                this.finishPutSevenStage();
+
+            for ( let player_id = 1; player_id <= this.player_amount; player_id++ ) {
+                if ( this.checkIfThePlayerHaveSeven( player_id ) ) {
+                    this.checkPlayerPutSevenStage( player_id );
+                    return;
+                }
             }
+            this.finishPutSevenStage();
         },
         checkIfThePlayerHaveSeven : function( player_id ) {
             return ( this.card_list.filter(
@@ -255,7 +285,7 @@ var app = new Vue({
         },
         finishPutSevenStage: function() {
             for (let i = 0, l = this.card_list.length; i < l; i++) {
-                if ( this.card_list[i].status == 3 ) {
+                if ( this.card_list[i].status == 5 ) {//Enum化
                     this.updateWhereCanPut( i );
                 }
             }
@@ -283,15 +313,15 @@ var app = new Vue({
             }
         },
         putCard : function( index ) {
-            this.card_list[index].status = 3;
+            this.card_list[index].status = 5;/*Enum化*/
             this.updateWhereCanPut( index );
         },
         updateWhereCanPut : function( index ) {
             this.card_list[index].can_play = false;
-            if ( this.card_list[index].number > 1 && this.card_list[index - 1].status != 3 ) {
+            if ( this.card_list[index].number > 1 && this.card_list[index - 1].status != 5/*Enum化*/ ) {
                 this.card_list[index - 1].can_play = true;
             }
-            if ( this.card_list[index].number < 13 && this.card_list[index + 1].status != 3 ) {
+            if ( this.card_list[index].number < 13 && this.card_list[index + 1].status != 5/*Enum化*/ ) {
                 this.card_list[index + 1].can_play = true;
             }
         },

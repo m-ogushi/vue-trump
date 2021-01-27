@@ -15,9 +15,9 @@
     <p>{{ message }}</p>
     <p>{{ progressionMessageText }}</p>
     <br>
-    <div id="player2_card_field" class="card_field">
+    <div id="player2_card_field" class="player_card_field">
         <transition-group name="player2_card_field">
-            <div class="player_card" v-for="( item, index ) in card_list" v-if="item.status==2" v-bind:key="item.id"  :style="{width: player2CardWidth}" v-on:click="selectCard( index )">
+            <div class="player_card" v-for="( item, index ) in player2Card" v-bind:key="item.id"  :style="{width: player2CardWidth}" v-on:click="selectCard( item.id )">
                 <transition name="can_select_card_list">
                     <div class="can_select_card" v-if="item.can_play && turn_player_id == 2"></div>
                 </transition>
@@ -44,18 +44,46 @@
         </tr>
     </table>
     <br>
-    <p><a class="turn_mark" v-if="this.turn_player_id==1">〇</a>プレイヤー1</p>
-    <p>パス: {{ pass_count[0] }}回</p>
-    <button v-if="this.turn_player_id==1 && this.enable_pass"
-            v-on:click="pass()">パスする</button>
-    <br>
-    <div id="player1_card_field" class="card_field">
-        <transition-group name="player1_card_field">
-            <div class="player_card" v-for="( item, index ) in card_list" v-if="item.status==1" v-bind:key="item.id" :style="{width: player1CardWidth}" v-on:click="selectCard( index )">
-                <img :src="item.imageSrc">
+    <div style="display:flex;">
+        <div class="player_space">
+            <div class="player_info_space">
+                <p><a class="turn_mark" v-if="this.turn_player_id==1">〇</a>プレイヤー1</p>
+                <p>パス: {{ pass_count[0] }}回</p>
+                <button v-if="this.turn_player_id==1 && this.enable_pass"
+                    v-on:click="pass()">パスする</button>
             </div>
-        </transition-group>
+            <div id="player1_card_field" class="player_card_field">
+                <transition-group name="player1_card_field">
+                    <div class="player_card" v-for="( item, index ) in player1Card" v-bind:key="item.id" :style="{width: index == player1Card.length - 1 ? '' : player1CardWidth }" v-on:click="selectCard( item.id )">
+                        <transition name="can_select_card_list">
+                            <div class="can_select_card" v-if="item.can_play && turn_player_id == 1"></div>
+                        </transition>
+                        <img :src="item.imageSrc">
+                    </div>
+                </transition-group>
+            </div>
+        </div>
+
+        <div class="player_space">
+            <div class="player_info_space">
+                <p><a class="turn_mark" v-if="this.turn_player_id==3">〇</a>プレイヤー3</p>
+                <p>パス: {{ pass_count[2] }}回</p>
+                <button v-if="this.turn_player_id==3 && this.enable_pass"
+                        v-on:click="pass()">パスする</button>
+            </div>
+            <div id="player3_card_field" class="player_card_field">
+                <transition-group name="player3_card_field">
+                    <div class="player_card" v-for="( item, index ) in player3Card" v-bind:key="item.id" :style="{width: index == player3Card.length - 1 ? '' : player3CardWidth }" v-on:click="selectCard( item.id )">
+                        <transition name="can_select_card_list">
+                            <div class="can_select_card" v-if="item.can_play && turn_player_id == 3"></div>
+                        </transition>
+                        <img :src="item.imageSrc"><!--:class="{ canSelectCard }"--><!-- :class="{ can_select_card: item.can_play }" -->
+                    </div>
+                </transition-group>
+            </div>
+        </div>
     </div>
+
 </div>
 <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.5/lodash.min.js"></script>
