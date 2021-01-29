@@ -68,20 +68,37 @@ td .can_put_card
     height: 100%;
 }
 
-.turn_mark
-{
-    color: #ff0000;
-}
-
 .player_space {
     position:relative;
-    width:40%;
+    width:45%;
 }
 
 .player_info_space {
     width:100%;
     height:150px;
 }
+
+.my_turn_background{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: #F2D9F2;
+    z-index: -1;
+}
+
+
+.show_my_turn_background-enter, .show_my_turn_background-leave-to{
+    opacity: 0;
+}
+
+.show_my_turn_background-enter-to, .show_my_turn_background-leave {
+    opacity: 1;
+}
+
+.show_my_turn_background-enter-active, .show_my_turn_background-leave-active {
+    transition: opacity 0.5s;
+}
+
 
 .player_space:not(:first-child){
     margin-left: 5%;
@@ -90,40 +107,27 @@ td .can_put_card
 .player_card_field {
     width: 100%;
     position: relative;
+    text-align: center;
 }
 .player_card_field img {
     width: 136px;
     height: 200px;
 }
 
-.player1_card_field-move {
+.player_card_field-move {
      transition: transform 0.5s;
  }
 
-.player1_card_field-leave-active{
+.player_card_field-leave-active{
     position: absolute;
     transition: opacity 0.5s, transform 0.5s;
 }
 
-.player1_card_field-leave-to {
+.player_card_field-leave-to {
     position: absolute;
      opacity: 0;
-     transform: translateY( -100px );
+     /*transform: translateY( -100px ); 一旦透明化のみ*/
  }
-
-.player2_card_field-move {
-    transition: transform 0.5s;
-}
-
-.player2_card_field-leave-active{
-    position: absolute;
-    transition: opacity 0.5s, transform 0.5s;
-}
-
-.player2_card_field-leave-to {
-    opacity: 0;
-    transform: translateY( 30px );
-}
 
 .show_can_play-enter-active{
     position: absolute;

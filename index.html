@@ -6,84 +6,54 @@
     <link href="main.css" rel="stylesheet">
 </head>
 <body>
-<div v-cloak id="app">
-    <modal v-if="showModal" @close="showModal = false">
-        <h3 slot="header">{{ showModalMessage[0] }}</h3>
-        <a slot="body">{{ showModalMessage[1] }}</a>
-    </modal>
-
-    <p>{{ message }}</p>
-    <p>{{ progressionMessageText }}</p>
-    <br>
-    <div id="player2_card_field" class="player_card_field">
-        <transition-group name="player2_card_field">
-            <div class="player_card" v-for="( item, index ) in player2Card" v-bind:key="item.id"  :style="{width: player2CardWidth}" v-on:click="selectCard( item.id )">
-                <transition name="can_select_card_list">
-                    <div class="can_select_card" v-if="item.can_play && turn_player_id == 2"></div>
-                </transition>
-                <img :src="item.imageSrc"><!--:class="{ canSelectCard }"--><!-- :class="{ can_select_card: item.can_play }" -->
-            </div>
-        </transition-group>
+<div v-cloak id="game_content">
+    <div id="start_menu"  v-if='this.gameStatus == "START"'>
+    人数
+        <a v-on:click="specifyAmountPlayer( 2 )"> 2人 </a>
+        <a v-on:click="specifyAmountPlayer( 3 )"> 3人 </a>
+        <a v-on:click="specifyAmountPlayer( 4 )"> 4人 </a>
     </div>
-    <p><a class="turn_mark" v-if="this.turn_player_id==2">〇</a>プレイヤー2</p>
-    <p>パス: {{ pass_count[1] }}回</p>
-    <button v-if="this.turn_player_id==2 && this.enable_pass" v-on:click="pass()">パスする</button>
+    <div v-cloak v-if='this.gameStatus == "PLAY"'>
+        <modal v-if="showModal" @close="showModal = false">
+            <h3 slot="header">{{ showModalMessage[0] }}</h3>
+            <a slot="body">{{ showModalMessage[1] }}</a>
+        </modal>
 
-    <table id="playground">
-        <tr>
-            <td v-for="card_info of heartCard" is="field-card" v-bind="card_info">
-        </tr>
-        <tr>
-            <td v-for="card_info of clubCard" is="field-card" v-bind="card_info">
-        </tr>
-        <tr>
-            <td v-for="card_info of diaCard" is="field-card" v-bind="card_info">
-        </tr>
-        <tr>
-            <td v-for="card_info of spadeCard" is="field-card" v-bind="card_info">
-        </tr>
-    </table>
-    <br>
-    <div style="display:flex;">
-        <div class="player_space">
-            <div class="player_info_space">
-                <p><a class="turn_mark" v-if="this.turn_player_id==1">〇</a>プレイヤー1</p>
-                <p>パス: {{ pass_count[0] }}回</p>
-                <button v-if="this.turn_player_id==1 && this.enable_pass"
-                    v-on:click="pass()">パスする</button>
-            </div>
-            <div id="player1_card_field" class="player_card_field">
-                <transition-group name="player1_card_field">
-                    <div class="player_card" v-for="( item, index ) in player1Card" v-bind:key="item.id" :style="{width: index == player1Card.length - 1 ? '' : player1CardWidth }" v-on:click="selectCard( item.id )">
-                        <transition name="can_select_card_list">
-                            <div class="can_select_card" v-if="item.can_play && turn_player_id == 1"></div>
-                        </transition>
-                        <img :src="item.imageSrc">
-                    </div>
-                </transition-group>
-            </div>
+        <p>{{ message }}</p>
+        <p>{{ progressionMessageText }}</p>
+        <br>
+        <div style="display:flex;">
+            <each_player_space v-if="player_amount>=2"  :player_id="2" :turn_player_id="this.turn_player_id" :pass_count="pass_count[1]" :enable_pass="enable_pass" :player_card_list="player2Card" :card_width="player2CardWidth" :empty="''">
+            </each_player_space>
+
+            <each_player_space v-if="player_amount>=4"  :player_id="4" :turn_player_id="this.turn_player_id" :pass_count="pass_count[3]" :enable_pass="enable_pass" :player_card_list="player4Card" :card_width="player4CardWidth" :empty="''">
+            </each_player_space>
         </div>
 
-        <div class="player_space">
-            <div class="player_info_space">
-                <p><a class="turn_mark" v-if="this.turn_player_id==3">〇</a>プレイヤー3</p>
-                <p>パス: {{ pass_count[2] }}回</p>
-                <button v-if="this.turn_player_id==3 && this.enable_pass"
-                        v-on:click="pass()">パスする</button>
-            </div>
-            <div id="player3_card_field" class="player_card_field">
-                <transition-group name="player3_card_field">
-                    <div class="player_card" v-for="( item, index ) in player3Card" v-bind:key="item.id" :style="{width: index == player3Card.length - 1 ? '' : player3CardWidth }" v-on:click="selectCard( item.id )">
-                        <transition name="can_select_card_list">
-                            <div class="can_select_card" v-if="item.can_play && turn_player_id == 3"></div>
-                        </transition>
-                        <img :src="item.imageSrc"><!--:class="{ canSelectCard }"--><!-- :class="{ can_select_card: item.can_play }" -->
-                    </div>
-                </transition-group>
-            </div>
-        </div>
-    </div>
+        <table id="playground">
+            <tr>
+                <td v-for="card_info of heartCard" is="field-card" v-bind="card_info">
+            </tr>
+            <tr>
+                <td v-for="card_info of clubCard" is="field-card" v-bind="card_info">
+            </tr>
+            <tr>
+                <td v-for="card_info of diaCard" is="field-card" v-bind="card_info">
+            </tr>
+            <tr>
+                <td v-for="card_info of spadeCard" is="field-card" v-bind="card_info">
+            </tr>
+        </table>
+        <br>
+        <div style="display:flex;">
+            <each_player_space :player_id="1" :turn_player_id="this.turn_player_id" :pass_count="pass_count[0]" :enable_pass="enable_pass" :player_card_list="player1Card" :card_width="player1CardWidth" :empty="''">
+            </each_player_space>
 
+            <each_player_space v-if="player_amount>=3"  :player_id="3" :turn_player_id="this.turn_player_id" :pass_count="pass_count[2]" :enable_pass="enable_pass" :player_card_list="player3Card" :card_width="player3CardWidth" :empty="''">
+            </each_player_space>
+        </div>
+
+    </div>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.5/lodash.min.js"></script>

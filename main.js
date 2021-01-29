@@ -21,6 +21,71 @@ var fieldCard = {
     },
 }
 
+var eachPlayerSpace = {
+    template:
+        '<div class="player_space">' +
+            '<transition name="show_my_turn_background">' +
+                '<div class="my_turn_background" v-if="turn_player_id==player_id">' +
+                '</div>' +
+            '</transition>' +
+            '<div class="player_info_space">' +
+                '<p>プレイヤー{{ player_id }}</p>' +
+                '<p>パス: {{ pass_count }}回</p>' +
+                '<button v-if="turn_player_id==player_id && enable_pass"' +
+                'v-on:click="pass()">パスする</button>' +
+            '</div>' +
+            '<div class="player_card_field">' +
+                '<transition-group name="player_card_field">' +
+                    '<div class="player_card" v-for="( item, index ) in player_card_list" v-bind:key="item.id" :style="{width: index == player_card_list.length - 1 ? empty : card_width }" v-on:click="selectCard( item.id )">' +
+                        '<transition name="can_select_card_list">' +
+                            '<div class="can_select_card" v-if="item.can_play && turn_player_id == player_id"></div>' +
+                        '</transition>' +
+                         '<img :src="item.imageSrc">' +
+                    '</div>' +
+                '</transition-group>' +
+            '</div>' +
+        '</div>',
+    props: {
+        turn_player_id: {
+            type: Number,
+            required: true
+        },
+        pass_count: {
+            type: Number,
+            required: true
+        },
+        enable_pass: {
+            type: Boolean,
+            required: true
+        },
+        player_card_list: {
+            type: Array,
+            required: true
+        },
+        card_width: {
+            type: String,
+            required: true
+        },
+        player_id: {
+            type: Number,
+            required: true
+        },
+        empty: {
+
+        }
+
+    },
+    methods: {
+        selectCard(id) {
+            game_content.selectCard( id - 1 );
+        },
+        pass : function() {
+            game_content.pass_count[this.turn_player_id-1]++;
+            game_content.checkNextPlayerPutStage();
+        },
+    }
+}
+
 var modalWindow = {
     template: '<transition name="modal">'+'' +
         '            <div class="modal-mask">' +
@@ -50,15 +115,17 @@ const progressionStage = {
 
 const progressionStageText = ["7を並べてください。","の番です。","の勝ちです!!"];
 
-var app = new Vue({
-    el: '#app',
+var game_content = new Vue({
+    el: '#game_content',
     components: {
         'field-card': fieldCard,
-        'modal': modalWindow
+        'modal': modalWindow,
+        'each_player_space': eachPlayerSpace
     },
     data: {
         message: 'なかあかの7ならべ',
         showModal: false,
+        gameStatus: 'START',
         progression_stage: progressionStage.putSeven,
         card_list: [
             {id: 1, number: 1, status: 0, can_play: false, imageSrc: 'images/heart/card_heart_01.png'},
@@ -114,11 +181,11 @@ var app = new Vue({
             {id: 51, number: 12, status: 0, can_play: false, imageSrc: 'images/spade/card_spade_12.png'},
             {id: 52, number: 13, status: 0, can_play: false, imageSrc: 'images/spade/card_spade_13.png'}
         ],
-        pass_count : [0,0],
+        pass_count : [0,0,0,0],
         enable_pass : false,
-        player_amount : 3,
+        player_amount : 0,
         turn_player_id: 1,
-        amount_of_put_seven: [0,0]
+        amount_of_put_seven: [0,0,0,0]
     },
     computed: {
         heartCard() {
@@ -148,6 +215,24 @@ var app = new Vue({
         progressionMessageText() {
             return "プレイヤー" + this.turn_player_id + "さん" + progressionStageText[this.progression_stage];
         },
+        player1CardWidth() {
+            //$card_amount = this.player1Card.length;
+            //return ( ( document.body.clientWidth / 2 ) / $card_amount ) + 'px';
+            return ( this.cardWidth( this.player1Card.length ) + 'px' );
+        },
+        player2CardWidth() {
+            //$card_amount = this.player2Card.length;
+            //return ( ( document.body.clientWidth / 2 )  / $card_amount ) + 'px';
+            return ( this.cardWidth( this.player2Card.length ) + 'px' );
+        },
+        player3CardWidth() {
+            //$card_amount = this.player3Card.length;
+            ///return ( ( document.body.clientWidth / 2 ) / $card_amount ) + 'px';
+            return ( this.cardWidth( this.player3Card.length ) + 'px' );
+        },
+        player4CardWidth() {
+            return ( this.cardWidth( this.player4Card.length ) + 'px' );
+        },
         showModalMessage() {
             $modal_message_text = [
                 ['カードを配りました','7を並べてください'],
@@ -156,44 +241,19 @@ var app = new Vue({
             ];
             return $modal_message_text[this.progression_stage];
         },
-        player1CardWidth() {
-            $card_amount = this.player1Card.length;
-            return ( 500 / $card_amount ) + 'px';
-        },
-        player2CardWidth() {
-            $card_amount = this.card_list.filter
-            (
-                function (value) {
-                    return (value.status == 2 )
-                }
-            ).length;
-            return ( 1000 / $card_amount ) + 'px';
-        },
-        player3CardWidth() {
-            $card_amount = this.card_list.filter
-            (
-                function (value) {
-                    return (value.status == 3 )
-                }
-            ).length;
-            //return ( 1000 / $card_amount ) + 'px';
-            return ( 500 / $card_amount ) + 'px';
-        },
-        player4CardWidth() {
-            $card_amount = this.card_list.filter
-            (
-                function (value) {
-                    return (value.status == 4 )
-                }
-            ).length;
-            return ( 1000 / $card_amount ) + 'px';
-        },
     },
-    created: function () {
+    /*created: function () {
         this.preparationCard();
         this.startGame();
-    },
+    },*/
     methods: {
+        specifyAmountPlayer: function( $player_amount ) {
+            console.log( "こうなってるけど？" );
+            this.player_amount = $player_amount;
+            this.gameStatus = "PLAY";
+            this.preparationCard();
+            this.startGame();
+        },
         preparationCard: function() {
             this.card_list = _.shuffle(this.card_list);
 
@@ -216,14 +276,17 @@ var app = new Vue({
             this.ckeckPlayerPutSevenStatus();
             this.showTemporarilyModal();
         },
+        cardWidth: function ( $card_amount ) {
+            $card_enable_width = window.innerWidth * 0.45 - 136;
+            return ( ( $card_enable_width * 0.9 ) / $card_amount );
+        },
         showTemporarilyModal() {
             this.showModal = true;
             setTimeout(() => {
                 this.showModal = false;
             }, 2000);
         },
-        selectCard : function( id ) {
-            index = id -1;// 一旦、idをindexにする
+        selectCard : function( index ) {
             if( ! this.ifTheCardPlayerHave( index ) ) {
                 console.log( "自分のカードを選択してください" );
                 return;
