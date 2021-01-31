@@ -36,10 +36,7 @@ var eachPlayerSpace = {
             '</div>' +
             '<div class="player_card_field">' +
                 '<transition-group name="player_card_field">' +
-                    '<div class="player_card" v-for="( item, index ) in player_card_list" v-bind:key="item.id" :style="{width: index == player_card_list.length - 1 ? empty : card_width }" v-on:click="selectCard( item.id )">' +
-                        '<transition name="can_select_card_list">' +
-                            '<div class="can_select_card" v-if="item.can_play && turn_player_id == player_id"></div>' +
-                        '</transition>' +
+                    '<div class="player_card" v-for="( item, index ) in player_card_list" v-bind:key="item.id" :class="[ item.can_play && turn_player_id == player_id ? can_select_class : empty ]" :style="{width: index == player_card_list.length - 1 ? empty : card_width }" v-on:click="selectCard( item.id )">' +
                          '<img :src="item.imageSrc">' +
                     '</div>' +
                 '</transition-group>' +
@@ -56,6 +53,10 @@ var eachPlayerSpace = {
         },
         enable_pass: {
             type: Boolean,
+            required: true
+        },
+        can_select_class: {
+            type: String,
             required: true
         },
         player_card_list: {

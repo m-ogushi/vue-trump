@@ -23,10 +23,10 @@
         <p>{{ progressionMessageText }}</p>
         <br>
         <div style="display:flex;">
-            <each_player_space v-if="player_amount>=2"  :player_id="2" :turn_player_id="this.turn_player_id" :pass_count="pass_count[1]" :enable_pass="enable_pass" :player_card_list="player2Card" :card_width="player2CardWidth" :empty="''">
+            <each_player_space v-if="player_amount>=2"  :player_id="2" :turn_player_id="this.turn_player_id" :pass_count="pass_count[1]" :can_select_class="'can_select_card'" :enable_pass="enable_pass" :player_card_list="player2Card" :card_width="player2CardWidth" :empty="''">
             </each_player_space>
 
-            <each_player_space v-if="player_amount>=4"  :player_id="4" :turn_player_id="this.turn_player_id" :pass_count="pass_count[3]" :enable_pass="enable_pass" :player_card_list="player4Card" :card_width="player4CardWidth" :empty="''">
+            <each_player_space v-if="player_amount>=4"  :player_id="4" :turn_player_id="this.turn_player_id" :pass_count="pass_count[3]" :can_select_class="'can_select_card'" :enable_pass="enable_pass" :player_card_list="player4Card" :card_width="player4CardWidth" :empty="''">
             </each_player_space>
         </div>
 
@@ -46,10 +46,10 @@
         </table>
         <br>
         <div style="display:flex;">
-            <each_player_space :player_id="1" :turn_player_id="this.turn_player_id" :pass_count="pass_count[0]" :enable_pass="enable_pass" :player_card_list="player1Card" :card_width="player1CardWidth" :empty="''">
+            <each_player_space v-if="player_amount>=1" :player_id="1" :turn_player_id="this.turn_player_id" :pass_count="pass_count[0]" :can_select_class="'can_select_card'" :enable_pass="enable_pass" :player_card_list="player1Card" :card_width="player1CardWidth" :empty="''">
             </each_player_space>
 
-            <each_player_space v-if="player_amount>=3"  :player_id="3" :turn_player_id="this.turn_player_id" :pass_count="pass_count[2]" :enable_pass="enable_pass" :player_card_list="player3Card" :card_width="player3CardWidth" :empty="''">
+            <each_player_space v-if="player_amount>=3"  :player_id="3" :turn_player_id="this.turn_player_id" :pass_count="pass_count[2]" :can_select_class="'can_select_card'" :enable_pass="enable_pass" :player_card_list="player3Card" :card_width="player3CardWidth" :empty="''">
             </each_player_space>
         </div>
 
