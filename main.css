@@ -2,7 +2,32 @@
     display: none;
 }
 
-#playground tr td img{
+.game_title {
+    padding: 1rem 2rem;
+    color: #fff;
+    border-radius: 10px;
+    background-image: -webkit-gradient(linear, left top, right top, from(#f83600), to(#f9d423));
+    background-image: -webkit-linear-gradient(left, #f83600 0%, #f9d423 100%);
+    background-image: linear-gradient(to right, #f83600 0%, #f9d423 100%);
+}
+
+.select_game_info_title{
+    background-color: #cccc;
+    padding: 1rem 2rem;
+    font-size: 150%;
+    border-radius: 0.3rem;
+}
+
+.select_game_info {
+    background-color: greenyellow;
+    margin-left: 20px;
+    padding: 1rem 2rem;
+    color: #000;
+    border-radius: 10px;
+    font-size: 150%;
+}
+
+.put_a_card_field img{
     width:57px;
     height:80px;
     text-align: center;
@@ -51,21 +76,24 @@
     opacity: 0;
 }
 
-td {
+.put_a_card_field {
     border:1px solid #ccc;
     height: 100px;
     width: 70px;
     text-align: center;
     vertical-align: middle;
     cursor: pointer;
+    position: relative;
 }
 
-td .can_put_card
+.put_a_card_field .can_put_card
 {
     background-color: orange;
-    position: relative;
+    position: absolute;
     width: 100%;
     height: 100%;
+    top: 0;
+    left: 0;
 }
 
 .player_space {

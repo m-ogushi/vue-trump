@@ -1,5 +1,5 @@
 var fieldCard = {
-    template: '<td><transition name="show_can_play"><div class="can_put_card" v-if="can_play"></div></transition>' +
+    template: '<td class="put_a_card_field"><transition name="show_can_play"><div class="can_put_card" v-if="can_play"></div></transition>' +
         '<transition name="field_card"><img :key="id" v-if="status==5" :src="imageSrc"></transition></td>', //statusはEnum化
     props: {
         id : {

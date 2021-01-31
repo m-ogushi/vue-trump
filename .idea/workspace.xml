@@ -83,7 +83,9 @@
       <workItem from="1611637873477" duration="4775000" />
       <workItem from="1611645750973" duration="710000" />
       <workItem from="1611705978732" duration="8751000" />
-      <workItem from="1611791242394" duration="15092000" />
+      <workItem from="1611791242394" duration="21282000" />
+      <workItem from="1612015879644" duration="22000" />
+      <workItem from="1612076541159" duration="34000" />
     </task>
     <task id="LOCAL-00001" summary="一通りの動作を確認">
       <created>1610599337096</created>
@@ -155,7 +157,14 @@
       <option name="project" value="LOCAL" />
       <updated>1611723573690</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="最初に人数を選択できるようにする">
+      <created>1611882453371</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1611882453371</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -172,24 +181,25 @@
     <MESSAGE value="プレイヤー2の、「出せるカード」の表示を追加" />
     <MESSAGE value="7を並べる段階では、他のカードを場におけないようにする" />
     <MESSAGE value="プレイヤー人数の可変に対応中" />
-    <option name="LAST_COMMIT_MESSAGE" value="プレイヤー人数の可変に対応中" />
+    <MESSAGE value="最初に人数を選択できるようにする" />
+    <option name="LAST_COMMIT_MESSAGE" value="最初に人数を選択できるようにする" />
   </component>
   <component name="WindowStateProjectService">
     <state x="970" y="-832" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1609840813892">
       <screen x="3" y="-1080" width="1920" height="1040" />
     </state>
     <state x="970" y="-832" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1366.728/3.-1080.1920.1040@3.-1080.1920.1040" timestamp="1609840813892" />
-    <state x="607" y="-1033" width="773" height="621" key="CommitChangelistDialog2" timestamp="1611723571662">
+    <state x="607" y="-1033" width="773" height="621" key="CommitChangelistDialog2" timestamp="1611882451699">
       <screen x="3" y="-1080" width="1920" height="1040" />
     </state>
     <state x="-1169" y="-1069" key="CommitChangelistDialog2/0.0.1366.728/-1838.-1086.1920.1040/82.-1080.1858.1080@-1838.-1086.1920.1040" timestamp="1611617478468" />
-    <state x="607" y="-1033" width="773" height="621" key="CommitChangelistDialog2/0.0.1366.728/3.-1080.1920.1040@3.-1080.1920.1040" timestamp="1611723571662" />
-    <state x="176" y="-965" width="1626" height="681" key="DiffContextDialog" timestamp="1611881110469">
+    <state x="607" y="-1033" width="773" height="621" key="CommitChangelistDialog2/0.0.1366.728/3.-1080.1920.1040@3.-1080.1920.1040" timestamp="1611882451699" />
+    <state x="176" y="-965" width="1626" height="681" key="DiffContextDialog" timestamp="1611895378156">
       <screen x="3" y="-1080" width="1920" height="1040" />
     </state>
     <state x="-1665" y="-971" width="1626" height="681" key="DiffContextDialog/0.0.1366.728/-1838.-1086.1920.1040/82.-1080.1858.1080@-1838.-1086.1920.1040" timestamp="1611617884077" />
     <state x="148" y="90" width="1157" height="477" key="DiffContextDialog/0.0.1366.728/3.-1080.1920.1040@0.0.1366.728" timestamp="1611496590530" />
-    <state x="176" y="-965" width="1626" height="681" key="DiffContextDialog/0.0.1366.728/3.-1080.1920.1040@3.-1080.1920.1040" timestamp="1611881110469" />
+    <state x="176" y="-965" width="1626" height="681" key="DiffContextDialog/0.0.1366.728/3.-1080.1920.1040@3.-1080.1920.1040" timestamp="1611895378156" />
     <state x="281" y="-946" width="1574" height="708" key="DiffContextDialog/0.0.1366.728/82.-1080.1858.1080/-1838.-1086.1920.1040@82.-1080.1858.1080" timestamp="1611036959659" />
     <state x="147" y="90" width="1157" height="477" key="DiffContextDialog/0.0.1366.728@0.0.1366.728" timestamp="1611467350479" />
     <state x="1046" y="-883" width="546" height="490" key="FileChooserDialogImpl" timestamp="1611542523246">
@@ -201,16 +211,16 @@
       <screen x="3" y="-1080" width="1920" height="1040" />
     </state>
     <state x="968" y="-937" key="RollbackChangesDialog/0.0.1366.728/3.-1080.1920.1040@3.-1080.1920.1040" timestamp="1610945799616" />
-    <state x="648" y="-935" key="Vcs.Push.Dialog.v2" timestamp="1611723583723">
+    <state x="648" y="-935" key="Vcs.Push.Dialog.v2" timestamp="1611882458495">
       <screen x="3" y="-1080" width="1920" height="1040" />
     </state>
     <state x="-1193" y="-941" key="Vcs.Push.Dialog.v2/0.0.1366.728/-1838.-1086.1920.1040/82.-1080.1858.1080@-1838.-1086.1920.1040" timestamp="1611616136490" />
-    <state x="648" y="-935" key="Vcs.Push.Dialog.v2/0.0.1366.728/3.-1080.1920.1040@3.-1080.1920.1040" timestamp="1611723583723" />
-    <state x="1111" y="-798" width="812" height="758" key="find.popup" timestamp="1611542479081">
+    <state x="648" y="-935" key="Vcs.Push.Dialog.v2/0.0.1366.728/3.-1080.1920.1040@3.-1080.1920.1040" timestamp="1611882458495" />
+    <state x="1082" y="-798" width="812" height="758" key="find.popup" timestamp="1611917788624">
       <screen x="3" y="-1080" width="1920" height="1040" />
     </state>
     <state x="789" y="198" width="577" height="530" key="find.popup/0.0.1366.728/3.-1080.1920.1040@0.0.1366.728" timestamp="1609929950874" />
-    <state x="1111" y="-798" width="812" height="758" key="find.popup/0.0.1366.728/3.-1080.1920.1040@3.-1080.1920.1040" timestamp="1611542479081" />
+    <state x="1082" y="-798" width="812" height="758" key="find.popup/0.0.1366.728/3.-1080.1920.1040@3.-1080.1920.1040" timestamp="1611917788624" />
     <state x="-1171" y="-303" key="run.anything.popup" timestamp="1611622400184">
       <screen x="-1838" y="-1086" width="1920" height="1040" />
     </state>

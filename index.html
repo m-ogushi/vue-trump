@@ -7,11 +7,12 @@
 </head>
 <body>
 <div v-cloak id="game_content">
+    <h2 class="game_title">{{ message }}</h2>
     <div id="start_menu"  v-if='this.gameStatus == "START"'>
-    人数
-        <a v-on:click="specifyAmountPlayer( 2 )"> 2人 </a>
-        <a v-on:click="specifyAmountPlayer( 3 )"> 3人 </a>
-        <a v-on:click="specifyAmountPlayer( 4 )"> 4人 </a>
+        <a class="select_game_info_title">人数</a>
+        <a class="select_game_info" v-on:click="specifyAmountPlayer( 2 )"> 2人 </a>
+        <a class="select_game_info"v-on:click="specifyAmountPlayer( 3 )"> 3人 </a>
+        <a class="select_game_info"v-on:click="specifyAmountPlayer( 4 )"> 4人 </a>
     </div>
     <div v-cloak v-if='this.gameStatus == "PLAY"'>
         <modal v-if="showModal" @close="showModal = false">
@@ -19,7 +20,6 @@
             <a slot="body">{{ showModalMessage[1] }}</a>
         </modal>
 
-        <p>{{ message }}</p>
         <p>{{ progressionMessageText }}</p>
         <br>
         <div style="display:flex;">
