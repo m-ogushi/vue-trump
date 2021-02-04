@@ -29,9 +29,9 @@ var eachPlayerSpace = {
                 '</div>' +
             '</transition>' +
             '<div class="player_info_space">' +
-                '<p>プレイヤー{{ player_id }}</p>' +
+                '<p>{{ player_name }}</p>' +
                 '<p>パス: {{ pass_count }}回</p>' +
-                '<button v-if="turn_player_id==player_id && enable_pass"' +
+                '<button class="player_pass_button" v-if="turn_player_id==player_id && enable_pass"' +
                 'v-on:click="pass()">パスする</button>' +
             '</div>' +
             '<div class="player_card_field">' +
@@ -45,6 +45,10 @@ var eachPlayerSpace = {
     props: {
         turn_player_id: {
             type: Number,
+            required: true
+        },
+        player_name: {
+            type: String,
             required: true
         },
         pass_count: {
@@ -89,22 +93,16 @@ var eachPlayerSpace = {
 
 var modalWindow = {
     template: '<transition name="modal">'+'' +
-        '            <div class="modal-mask">' +
-        '                <div class="modal-wrapper">' +
         '                    <div class="modal-container">' +
-        '                        <div class="modal-header">' +
+        '                        <div class="modal-body">' +
         '                            <slot name="header">' +
         '                                default header' +
         '                            </slot>' +
-        '                        </div>' +
-        '                        <div class="modal-body">' +
         '                            <slot name="body">' +
         '                                default body' +
         '                            </slot>' +
         '                        </div>' +
         '                    </div>' +
-        '                </div>' +
-        '            </div>' +
         '        </transition>'
 }
 
@@ -125,6 +123,7 @@ var game_content = new Vue({
     },
     data: {
         message: 'なかあかの7ならべ',
+        start_error_message: '',
         showModal: false,
         gameStatus: 'START',
         progression_stage: progressionStage.putSeven,
@@ -185,6 +184,7 @@ var game_content = new Vue({
         pass_count : [0,0,0,0],
         enable_pass : false,
         player_amount : 0,
+        player_name : ["なかあか","まんじゅう","わんこ","はりはり"],
         turn_player_id: 1,
         amount_of_put_seven: [0,0,0,0]
     },
@@ -245,15 +245,21 @@ var game_content = new Vue({
     },
     /*created: function () {
         this.preparationCard();
-        this.startGame();
+        this.startPlay();
     },*/
     methods: {
         specifyAmountPlayer: function( $player_amount ) {
-            console.log( "こうなってるけど？" );
             this.player_amount = $player_amount;
+            this.start_error_message = '';
+        },
+        startGame : function() {
+            if ( !this.player_amount ) {
+                this.start_error_message = "人数を選んでください";
+                return;
+            }
             this.gameStatus = "PLAY";
             this.preparationCard();
-            this.startGame();
+            this.startPlay();
         },
         preparationCard: function() {
             this.card_list = _.shuffle(this.card_list);
@@ -272,7 +278,7 @@ var game_content = new Vue({
                 return a.id - b.id
             });
         },
-        startGame: function () {
+        startPlay: function () {
             this.startPutSeven();
             this.ckeckPlayerPutSevenStatus();
             this.showTemporarilyModal();
@@ -282,6 +288,8 @@ var game_content = new Vue({
             return ( ( $card_enable_width * 0.9 ) / $card_amount );
         },
         showTemporarilyModal() {
+            console.log( "表示!" );
+            console.log( this.progression_stage );
             this.showModal = true;
             setTimeout(() => {
                 this.showModal = false;

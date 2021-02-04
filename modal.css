@@ -1,0 +1,34 @@
+.modal-container {
+    display: flex; /* 要素をFlexコンテナとして定義する */
+    justify-content: center;/* flexアイテムの上下中央を指定する */
+    align-items: center;
+    position: fixed;
+    z-index: 9998;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: transparent;
+    color: #f83600;
+    font-family: Helvetica, Arial, sans-serif;
+}
+
+.modal-body {
+    margin: 20px 0;
+}
+
+.modal-enter,.modal-leave-to{
+    opacity: 0;
+}
+
+.modal-leave-to{
+    transform: scale(2, 2);
+}
+
+.modal-enter-active {
+    /*transition:transform: scale(2, 2);*/
+}
+.modal-enter-active,.modal-leave-active{
+    transition: opacity 1s, transform 0.5s;
+    /*transition: ;*/
+}

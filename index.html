@@ -4,33 +4,59 @@
     <meta charset="utf-8">
     <title>Vue.js 七並べ</title>
     <link href="main.css" rel="stylesheet">
+    <link href="modal.css" rel="stylesheet">
+    <link href="start.css" rel="stylesheet">
 </head>
 <body>
 <div v-cloak id="game_content">
-    <h2 class="game_title">{{ message }}</h2>
-    <div id="start_menu"  v-if='this.gameStatus == "START"'>
-        <a class="select_game_info_title">人数</a>
-        <a class="select_game_info" v-on:click="specifyAmountPlayer( 2 )"> 2人 </a>
-        <a class="select_game_info"v-on:click="specifyAmountPlayer( 3 )"> 3人 </a>
-        <a class="select_game_info"v-on:click="specifyAmountPlayer( 4 )"> 4人 </a>
+    <!--<h2 class="game_title">{{ message }}</h2>-->
+    <div id ="start_screen" v-if='this.gameStatus == "START"'>
+        <h2 id ="game_title">{{ message }}</h2>
+        <div class="start_menu">
+            <div class="start_menu_title">
+                <a class="select_game_info_title">人数</a>
+            </div>
+            <div class="start_menu_button">
+                <a class="select_game_info" v-on:click="specifyAmountPlayer( 2 )" :class="[ player_amount == 2 ? 'selected_info' : '' ]">2人</a>
+                <a class="select_game_info"v-on:click="specifyAmountPlayer( 3 )" :class="[ player_amount == 3 ? 'selected_info' : '' ]">3人</a>
+                <a class="select_game_info"v-on:click="specifyAmountPlayer( 4 )" :class="[ player_amount == 4 ? 'selected_info' : '' ]">4人</a>
+            </div>
+        </div>
+        <div class="start_menu" v-if="player_amount">
+            <div class="start_menu_title">
+                <a class="select_game_info_title">名前</a>
+            </div>
+            <div class="start_menu_input_list">
+                <input class="start_menu_input" type="text" v-model="player_name[0]" v-if="player_amount>=1">
+                <input class="start_menu_input" type="text" v-model="player_name[1]" v-if="player_amount>=2">
+                <input class="start_menu_input" type="text" v-model="player_name[2]" v-if="player_amount>=3">
+                <input class="start_menu_input" type="text" v-model="player_name[3]" v-if="player_amount>=4">
+            </div>
+        </div>
+        <div id="start_game">
+            <a class="select_game_info start_button" v-on:click="startGame()" :class="[ gameStatus == 'PLAY' ? 'selected_info' : '' ]">スタート</a>
+        </div>
+        <div id="start_error_message" v-if='this.start_error_message != ""'>
+            <a class="start_error_message_text">{{ start_error_message }}</a>
+        </div>
     </div>
-    <div v-cloak v-if='this.gameStatus == "PLAY"'>
-        <modal v-if="showModal" @close="showModal = false">
+    <div v-cloak v-if='this.gameStatus == "PLAY"' class="play_background">
+        <modal v-show="showModal" @close="showModal = false">
             <h3 slot="header">{{ showModalMessage[0] }}</h3>
             <a slot="body">{{ showModalMessage[1] }}</a>
         </modal>
 
-        <p>{{ progressionMessageText }}</p>
+        <!--<p>{{ progressionMessageText }}</p>-->
         <br>
         <div style="display:flex;">
-            <each_player_space v-if="player_amount>=2"  :player_id="2" :turn_player_id="this.turn_player_id" :pass_count="pass_count[1]" :can_select_class="'can_select_card'" :enable_pass="enable_pass" :player_card_list="player2Card" :card_width="player2CardWidth" :empty="''">
+            <each_player_space v-if="player_amount>=2"  :player_id="2" :player_name="player_name[1]" :turn_player_id="this.turn_player_id" :pass_count="pass_count[1]" :can_select_class="'can_select_card'" :enable_pass="enable_pass" :player_card_list="player2Card" :card_width="player2CardWidth" :empty="''">
             </each_player_space>
 
-            <each_player_space v-if="player_amount>=4"  :player_id="4" :turn_player_id="this.turn_player_id" :pass_count="pass_count[3]" :can_select_class="'can_select_card'" :enable_pass="enable_pass" :player_card_list="player4Card" :card_width="player4CardWidth" :empty="''">
+            <each_player_space v-if="player_amount>=4"  :player_id="4" :player_name="player_name[3]" :turn_player_id="this.turn_player_id" :pass_count="pass_count[3]" :can_select_class="'can_select_card'" :enable_pass="enable_pass" :player_card_list="player4Card" :card_width="player4CardWidth" :empty="''">
             </each_player_space>
         </div>
 
-        <table id="playground">
+        <table id="put_cards_field">
             <tr>
                 <td v-for="card_info of heartCard" is="field-card" v-bind="card_info">
             </tr>
@@ -44,12 +70,11 @@
                 <td v-for="card_info of spadeCard" is="field-card" v-bind="card_info">
             </tr>
         </table>
-        <br>
         <div style="display:flex;">
-            <each_player_space v-if="player_amount>=1" :player_id="1" :turn_player_id="this.turn_player_id" :pass_count="pass_count[0]" :can_select_class="'can_select_card'" :enable_pass="enable_pass" :player_card_list="player1Card" :card_width="player1CardWidth" :empty="''">
+            <each_player_space v-if="player_amount>=1" :player_id="1" :player_name="player_name[0]" :turn_player_id="this.turn_player_id" :pass_count="pass_count[0]" :can_select_class="'can_select_card'" :enable_pass="enable_pass" :player_card_list="player1Card" :card_width="player1CardWidth" :empty="''">
             </each_player_space>
 
-            <each_player_space v-if="player_amount>=3"  :player_id="3" :turn_player_id="this.turn_player_id" :pass_count="pass_count[2]" :can_select_class="'can_select_card'" :enable_pass="enable_pass" :player_card_list="player3Card" :card_width="player3CardWidth" :empty="''">
+            <each_player_space v-if="player_amount>=3"  :player_id="3" :player_name="player_name[2]" :turn_player_id="this.turn_player_id" :pass_count="pass_count[2]" :can_select_class="'can_select_card'" :enable_pass="enable_pass" :player_card_list="player3Card" :card_width="player3CardWidth" :empty="''">
             </each_player_space>
         </div>
 

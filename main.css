@@ -2,6 +2,23 @@
     display: none;
 }
 
+#game_title{
+    text-align: center;
+    font-size: 2.5em;
+    color: white;
+}
+#game_content{
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+}
+
+#start_screen{
+    width: 100%;
+    min-height: 100vh;
+    background-image: url( "/images/background/watercolor_00698.jpg" ) ;
+}
+
 .game_title {
     padding: 1rem 2rem;
     color: #fff;
@@ -11,22 +28,61 @@
     background-image: linear-gradient(to right, #f83600 0%, #f9d423 100%);
 }
 
+.start_menu {
+    display: flex;
+    margin-top: 1em;
+}
+
+#start_game {
+    margin-top: 5em;
+    margin: 5em auto 0;
+    width: 50%;
+    text-align: center;
+}
+
 .select_game_info_title{
-    background-color: #cccc;
     padding: 1rem 2rem;
-    font-size: 150%;
-    border-radius: 0.3rem;
+    font-size: 2rem;
+    font-weight: bold;
+    color: white;
 }
 
 .select_game_info {
-    background-color: greenyellow;
-    margin-left: 20px;
+    border: double 0.3em #004040;
+    background-color: #008F00;
+    margin-left: 1rem;
     padding: 1rem 2rem;
-    color: #000;
+    color: #FFF;
     border-radius: 10px;
-    font-size: 150%;
+    font-size: 1.5em;
+    font-weight: bold;
 }
 
+#start_error_message{
+    text-align: center;
+    margin-top: 5em;
+}
+
+.start_error_message_text{
+    color: #F3E100;
+}
+
+.selected_info{
+    background-color: #86B81B;
+    text-shadow: 0px 0px 1px #000,
+    4px 4px 2px rgba(0,0,0,0.5);
+}
+
+#put_cards_field{
+    background-image: url('/images/background/put_cards_field_background.jpg');
+    background-size: 15% auto;
+    margin: 1em auto;
+}
+
+.play_background {
+    background-color: #DDFFDD;
+    position: relative;
+}
 .put_a_card_field img{
     width:57px;
     height:80px;
@@ -64,7 +120,7 @@
 
 .put_a_card_field .can_put_card
 {
-    background-color: orange;
+    background-color: #90EE90;
     position: absolute;
     width: 100%;
     height: 100%;
@@ -80,16 +136,21 @@
 .player_info_space {
     width:100%;
     height:150px;
+    position: relative;
 }
 
 .my_turn_background{
     position: absolute;
     width: 100%;
     height: 100%;
-    background-color: #F2D9F2;
-    z-index: -1;
+    background-color: #50ED9E;
 }
 
+.player_pass_button {
+    background-color: #FFFFFF;
+    margin-left: 1rem;
+    border-radius: 10px;
+}
 
 .show_my_turn_background-enter, .show_my_turn_background-leave-to{
     opacity: 0;
@@ -102,7 +163,6 @@
 .show_my_turn_background-enter-active, .show_my_turn_background-leave-active {
     transition: opacity 0.5s;
 }
-
 
 .player_space:not(:first-child){
     margin-left: 5%;
@@ -149,53 +209,4 @@
 
 .field_card-enter {
     opacity: 0;
-}
-
-.modal-mask {
-    position: fixed;
-    z-index: 9998;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-    display: table;
-    transition: opacity 0.3s ease;
-}
-
-.modal-wrapper {
-    display: table-cell;
-    vertical-align: middle;
-}
-
-.modal-container {
-    width: 300px;
-    margin: 0px auto;
-    padding: 20px 30px;
-    background-color: #fff;
-    border-radius: 2px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.33);
-    transition: all 0.3s ease;
-    font-family: Helvetica, Arial, sans-serif;
-}
-
-.modal-header h3 {
-    margin-top: 0;
-    color: #42b983;
-}
-
-.modal-body {
-    margin: 20px 0;
-}
-
-.modal-default-button {
-    float: right;
-}
-
-.modal-enter,.modal-leave-to{
-    opacity: 0;
-}
-
-.modal-enter-active,.modal-leave-active{
-    transition: opacity 0.5s;
 }
